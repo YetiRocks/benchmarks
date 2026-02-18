@@ -1,0 +1,71 @@
+## Load Test Application Schema
+## Contains all tables required for comprehensive load testing and result storage
+
+type TableName @table(database: "load-test") @export {
+    id: ID! @primaryKey
+    name: String!
+    email: String!
+    category: String!
+    description: String!
+    metadata: String!
+    payload: String!
+}
+
+type HtmlPage @table(database: "load-test") @export {
+    id: ID! @primaryKey
+    title: String!
+    content: String!
+    created_at: String!
+}
+
+type Manufacturer @table(database: "load-test") @export {
+    id: ID! @primaryKey
+    name: String!
+    country: String!
+}
+
+type Brand @table(database: "load-test") @export {
+    id: ID! @primaryKey
+    name: String!
+    manufacturerId: ID! @indexed
+    manufacturer: Manufacturer @relationship(from: "manufacturerId")
+}
+
+type Product @table(database: "load-test") @export {
+    id: ID! @primaryKey
+    name: String!
+    brandId: ID! @indexed
+    price: Float!
+    inStock: Boolean!
+    brand: Brand @relationship(from: "brandId")
+}
+
+type ThroughputTest @table(database: "load-test") @export {
+    id: ID! @primaryKey
+    name: String!
+    value: Int!
+}
+
+type TestRun @table(database: "load-test") @export {
+    id: ID! @primaryKey
+    testName: String! @indexed
+    timestamp: String!
+    durationSecs: Float!
+    results: String!
+    summary: String!
+    harnessOverhead: Float!
+    extrapolatedThroughput: String!
+}
+
+type TestConfig @table(database: "load-test") @export {
+    id: ID! @primaryKey
+    duration: Int!
+    vus: Int!
+}
+
+type VectorDoc @table(database: "load-test") @export {
+    id: ID! @primaryKey
+    title: String!
+    content: String!
+    embedding: [Float!]! @indexed(type: "HNSW")
+}

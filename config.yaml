@@ -1,0 +1,34 @@
+# Application metadata
+name: "Benchmarks"
+app_id: "benchmarks"
+version: "1.0.0"
+description: "Benchmark suite with UI for running and tracking load tests"
+
+# Application state
+enabled: true
+
+# Interfaces
+rest: true
+graphql: true
+
+# GraphQL schemas to define tables
+schemas:
+  - schema.graphql
+
+# Custom resources (Rust plugins)
+resources:
+  - resources/*.rs
+
+# Extensions
+extensions:
+  - yeti-vectors:
+      fields:
+        - source: content
+          target: embedding
+          model: "all-MiniLM-L6-v2"
+          field_type: text
+
+# Static file serving (React UI)
+static_files:
+  path: web
+  route: "/"

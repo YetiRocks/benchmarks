@@ -1,0 +1,81 @@
+[workspace]
+
+[package]
+name = "yeti-benchmarks"
+version = "1.0.0"
+edition = "2024"
+description = "Standalone load testing suite for Yeti servers"
+authors = ["Yeti Team"]
+
+[lib]
+name = "load_common"
+path = "src/lib.rs"
+
+# Core benchmark binaries
+[[bin]]
+name = "throughput"
+path = "src/bin/throughput.rs"
+
+[[bin]]
+name = "load-rest-crud"
+path = "src/bin/rest_crud.rs"
+
+[[bin]]
+name = "load-rest-relationships"
+path = "src/bin/rest_relationships.rs"
+
+[[bin]]
+name = "load-graphql"
+path = "src/bin/graphql_basic.rs"
+
+[[bin]]
+name = "load-blob-storage"
+path = "src/bin/blob_storage.rs"
+
+# Streaming test binaries
+[[bin]]
+name = "load-sse"
+path = "src/bin/sse.rs"
+
+[[bin]]
+name = "load-ws"
+path = "src/bin/ws.rs"
+
+# Vector test binaries
+[[bin]]
+name = "load-vector-embed"
+path = "src/bin/vector_embed.rs"
+
+[[bin]]
+name = "load-vector-search"
+path = "src/bin/vector_search.rs"
+
+[dependencies]
+# Load testing framework
+goose = "0.18"
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# HTTP client
+reqwest = { version = "0.13", features = ["json", "rustls", "http2", "stream"], default-features = false }
+
+# JSON handling
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Time utilities
+chrono = { version = "0.4", features = ["serde"] }
+
+# CPU count for harness estimation
+num_cpus = "1.16"
+
+# WebSocket client for WS tests
+tokio-tungstenite = { version = "0.24", features = ["native-tls"] }
+native-tls = "0.2"
+
+# Streaming for SSE
+futures-util = "0.3"
+
+# Random word generation for vector tests
+rand = "0.8"

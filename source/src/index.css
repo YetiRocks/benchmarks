@@ -1,0 +1,354 @@
+:root {
+  --bg: #121212;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.06);
+  --text: #dddddd;
+  --text-dim: #666666;
+  --accent: #ff00ff;
+  --accent-dim: #cc00cc;
+  --success: #6a9955;
+  --warning: #d7ba7d;
+  --error: #d16969;
+  --running: #ff00ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Header - matches other Yeti apps (73px, logo left, title right) */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 73px;
+  padding: 0 2rem;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+}
+
+.header-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+}
+
+.app {
+  padding: 1.5rem 2rem;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.test-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 1200px) {
+  .test-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .test-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .app {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .test-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.test-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.test-card:hover {
+  border-color: var(--border);
+}
+
+.test-card.warming {
+  box-shadow: 0 0 20px rgba(215, 186, 125, 0.1);
+}
+
+.test-card.running {
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.1);
+}
+
+.test-card.overdue {
+  box-shadow: 0 0 20px rgba(209, 105, 105, 0.15);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.card-title-row h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.card-config {
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  min-height: 1.625rem;
+}
+
+.card-config .description {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.run-btn {
+  padding: 0.2rem 0.85rem;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.run-btn:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+.run-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.timer-box {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.85rem;
+  border: 1px solid var(--running);
+  color: var(--running);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.timer-box.warming-box {
+  border-color: var(--warning);
+  color: var(--warning);
+}
+
+.timer-box.warming-box .spinner {
+  border-top-color: var(--warning);
+}
+
+.timer-box.overdue-box {
+  border-color: var(--error);
+  color: var(--error);
+}
+
+.timer-box.overdue-box .spinner {
+  border-top-color: var(--error);
+}
+
+.card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.stat {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-value.highlight {
+  color: #ffffff;
+}
+
+.stat-sub {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.no-data {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.spinner {
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--border);
+  border-top-color: var(--running);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.history-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.history-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.history-table th {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-dim);
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.history-table td {
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-variant-numeric: tabular-nums;
+}
+
+.history-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.config-editor {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  align-items: center;
+}
+
+.config-editor label {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.config-editor input[type="number"] {
+  width: 52px;
+  padding: 0.15rem 0.3rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text);
+  font-size: 0.75rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.config-editor input[type="number"]:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.config-actions {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.config-save, .config-cancel {
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+}
+
+.config-save {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.config-save:hover {
+  opacity: 0.8;
+}
+
+.config-cancel:hover {
+  opacity: 0.8;
+}
+
+.error-msg {
+  color: var(--error);
+  font-size: 0.85rem;
+  padding: 0.5rem;
+  background: rgba(209, 105, 105, 0.1);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
