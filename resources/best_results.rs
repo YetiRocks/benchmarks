@@ -6,7 +6,6 @@
 //! |--------|--------------------------------|--------------------------------|
 //! | GET    | /benchmarks/best-results        | Latest result per test         |
 
-use std::collections::HashMap;
 use yeti_core::prelude::*;
 
 pub type BestResults = BestResultsResource;

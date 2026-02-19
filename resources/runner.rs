@@ -7,8 +7,7 @@
 //! | GET    | /benchmarks/runner        | Get current status    |
 //! | POST   | /benchmarks/runner        | Start a test          |
 
-use std::path::PathBuf;
-use std::sync::{Arc, Mutex, OnceLock};
+use std::sync::Mutex;
 use std::time::Instant;
 use yeti_core::prelude::*;
 
