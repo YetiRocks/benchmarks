@@ -165,45 +165,45 @@
 
 ## REST Update Performance
 
-**Users**: 50 | **Total**: 411517 | **Duration**: 30.0s
+**Users**: 50 | **Total**: 398406 | **Duration**: 30.0s
 
 | p50 | p99 | Throughput | Success |
 |-----|-----|-----------|--------|
-| 3.52ms | 7.02ms | 13717 req/s | 100.0% |
+| 3.51ms | 9.89ms | 13280 req/s | 100.0% |
 
 
 ## REST Join Performance
 
-**Query**: `Product.name + Brand.name` (1 join) | **Users**: 100 | **Total**: 2417674 | **Duration**: 30.0s
+**Query**: `Product.name + Brand.name` (1 join) | **Users**: 50 | **Total**: 2371157 | **Duration**: 30.0s
 
 | p50 | p99 | Throughput | Success |
 |-----|-----|-----------|--------|
-| 1.15ms | 2.79ms | 80589 req/s | 100.0% |
+| 0.57ms | 1.54ms | 79039 req/s | 100.0% |
 
 
 ## GraphQL Read Performance
 
-**Users**: 100 | **Total**: 1457030 | **Duration**: 30.0s
+**Users**: 50 | **Total**: 1663433 | **Duration**: 30.0s
 
 | p50 | p99 | Throughput | Success |
 |-----|-----|-----------|--------|
-| 1.82ms | 5.47ms | 48568 req/s | 100.0% |
+| 0.80ms | 2.25ms | 55448 req/s | 100.0% |
 
 
 ## GraphQL Mutation Performance
 
-**Users**: 100 | **Total**: 223108 | **Duration**: 30.0s
+**Users**: 50 | **Total**: 194605 | **Duration**: 30.0s
 
 | p50 | p99 | Throughput | Success |
 |-----|-----|-----------|--------|
-| 12.63ms | 28.14ms | 7437 req/s | 100.0% |
+| 7.30ms | 16.92ms | 6487 req/s | 100.0% |
 
 
 ## Blob Retrieval Performance
 
-**Payload**: 150KB HTML | **Users**: 50 | **Total**: 70477 | **Duration**: 30.0s
+**Payload**: 150KB HTML | **Users**: 50 | **Total**: 701 | **Duration**: 30.0s
 
 | p50 | p99 | Throughput | MB/s | Success |
 |-----|-----|-----------|------|--------|
-| 18.90ms | 67.52ms | 2349 req/s | 344.1 | 100.0% |
+| 1541.33ms | 11542.26ms | 23 req/s | 3.4 | 0.0% |
 
