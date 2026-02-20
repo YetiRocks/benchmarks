@@ -21,7 +21,7 @@ const TESTS: TestDef[] = [
   { id: 'vector-search', name: 'Vector Search', binary: 'load-vector-search', duration: 30, vus: 50 },
   { id: 'ws', name: 'WebSocket', binary: 'load-ws', duration: 30, vus: 50 },
   { id: 'sse', name: 'SSE Streaming', binary: 'load-sse', duration: 30, vus: 50 },
-  { id: 'blob-retrieval', name: 'Blob Retrieval', binary: 'load-blob-storage', duration: 30, vus: 50 },
+  { id: 'blob-retrieval', name: '150k Blob Retrieval', binary: 'load-blob-storage', duration: 30, vus: 50 },
 ]
 
 interface TestConfig {
@@ -358,15 +358,11 @@ function TestCard({ test, config, latest, phase, isDisabled, isSelected, warmupS
       <div className="card-stats">
         <div className="stat">
           <div className="stat-label">Throughput</div>
-          <div className="stat-value highlight">{hasData ? `${formatNumber(results.throughput!)} /s` : '—'}</div>
-          {hasData && results.extrapolatedThroughput && (
-            <div className="stat-sub">~{formatNumber(parseFloat(results.extrapolatedThroughput))} extrapolated</div>
-          )}
+          <div className="stat-value highlight">{hasData ? `${formatNumber(results.extrapolatedThroughput ? parseFloat(results.extrapolatedThroughput) : results.throughput!)} /s` : '—'}</div>
         </div>
         <div className="stat">
-          <div className="stat-label">Latency</div>
+          <div className="stat-label">Latency (P95)</div>
           <div className="stat-value">{hasData ? formatMs(results.p50 ?? 0) : '—'}</div>
-          <div className="stat-sub">p99: {hasData ? formatMs(results.p99 ?? 0) : '—'}</div>
         </div>
       </div>
     </div>
