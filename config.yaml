@@ -1,6 +1,6 @@
 # Application metadata
-name: "Benchmarks"
-app_id: "benchmarks"
+name: "Yeti Benchmarks"
+app_id: "yeti-benchmarks"
 version: "1.0.0"
 description: "Benchmark suite with UI for running and tracking load tests"
 
