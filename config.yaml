@@ -32,3 +32,6 @@ extensions:
 static_files:
   path: web
   route: "/"
+  build:
+    sourceDir: source
+    command: npm run build
